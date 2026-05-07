@@ -92,7 +92,7 @@ class TestSuccessDetection:
         ext = BeepExtension.from_crawler(crawler)
         spider = _make_spider(crawler, items=100, errors=0)
 
-        ext.spider_closed(spider, reason="itemcount")
+        ext.spider_closed(spider, reason="closespider_itemcount")
 
         mock_play.assert_called_once_with(ext.success_sound)
 
@@ -102,7 +102,7 @@ class TestSuccessDetection:
         ext = BeepExtension.from_crawler(crawler)
         spider = _make_spider(crawler, items=50, errors=0)
 
-        ext.spider_closed(spider, reason="pagecount")
+        ext.spider_closed(spider, reason="closespider_pagecount")
 
         mock_play.assert_called_once_with(ext.success_sound)
 
@@ -112,7 +112,7 @@ class TestSuccessDetection:
         ext = BeepExtension.from_crawler(crawler)
         spider = _make_spider(crawler, items=20, errors=0)
 
-        ext.spider_closed(spider, reason="timeout")
+        ext.spider_closed(spider, reason="closespider_timeout")
 
         mock_play.assert_called_once_with(ext.success_sound)
 
@@ -122,7 +122,7 @@ class TestSuccessDetection:
         ext = BeepExtension.from_crawler(crawler)
         spider = _make_spider(crawler, items=10, errors=0)
 
-        ext.spider_closed(spider, reason="errorcount")
+        ext.spider_closed(spider, reason="closespider_errorcount")
 
         mock_play.assert_called_once_with(ext.failure_sound)
 

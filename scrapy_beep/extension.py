@@ -11,7 +11,12 @@ _DEFAULT_FAILURE = str(_SOUNDS_DIR / "failure.wav")
 # Reasons that mean the spider was intentionally stopped by a user-imposed limit
 # (CLOSESPIDER_ITEMCOUNT, CLOSESPIDER_PAGECOUNT, CLOSESPIDER_TIMEOUT).
 # These count as success when items were scraped and no errors occurred.
-_SUCCESS_REASONS = {"finished", "itemcount", "pagecount", "timeout"}
+_SUCCESS_REASONS = {
+    "finished",
+    "closespider_itemcount",
+    "closespider_pagecount",
+    "closespider_timeout",
+}
 
 
 class BeepExtension:
