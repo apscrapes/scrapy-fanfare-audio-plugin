@@ -8,6 +8,11 @@ _SOUNDS_DIR = pathlib.Path(__file__).parent / "sounds"
 _DEFAULT_SUCCESS = str(_SOUNDS_DIR / "success.wav")
 _DEFAULT_FAILURE = str(_SOUNDS_DIR / "failure.wav")
 
+# Reasons that mean the spider was intentionally stopped by a user-imposed limit
+# (CLOSESPIDER_ITEMCOUNT, CLOSESPIDER_PAGECOUNT, CLOSESPIDER_TIMEOUT).
+# These count as success when items were scraped and no errors occurred.
+_SUCCESS_REASONS = {"finished", "itemcount", "pagecount", "timeout"}
+
 
 class BeepExtension:
     """Plays a sound when a spider finishes — different tones for success vs failure.
@@ -39,7 +44,7 @@ class BeepExtension:
         items = stats.get("item_scraped_count", 0)
         errors = stats.get("log_count/ERROR", 0)
 
-        is_success = reason == "finished" and items > 0 and errors == 0
+        is_success = reason in _SUCCESS_REASONS and items > 0 and errors == 0
 
         spider.logger.info(
             "BeepExtension: reason=%s items=%d errors=%d → %s",

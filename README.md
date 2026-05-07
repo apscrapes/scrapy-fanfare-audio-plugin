@@ -48,10 +48,14 @@ That's it. Run your spider and listen.
 
 | Condition | Sound |
 |---|---|
-| `reason == "finished"` **and** at least one item scraped **and** no ERRORs logged | Fanfare |
-| Any other reason (`shutdown`, `cancelled`) | Sad trombone |
-| `reason == "finished"` but zero items scraped | Sad trombone |
-| `reason == "finished"` but ERROR-level log entries present | Sad trombone |
+| Spider finished normally **and** items scraped **and** no ERRORs | Fanfare |
+| Stopped by `CLOSESPIDER_ITEMCOUNT` **and** items scraped **and** no ERRORs | Fanfare |
+| Stopped by `CLOSESPIDER_PAGECOUNT` **and** items scraped **and** no ERRORs | Fanfare |
+| Stopped by `CLOSESPIDER_TIMEOUT` **and** items scraped **and** no ERRORs | Fanfare |
+| Stopped by `CLOSESPIDER_ERRORCOUNT` | Sad trombone |
+| Zero items scraped | Sad trombone |
+| ERROR-level log entries present | Sad trombone |
+| Killed manually (`shutdown`, `cancelled`) | Sad trombone |
 
 The stats it checks — `item_scraped_count` and `log_count/ERROR` — are collected automatically by Scrapy's built-in stats system; you don't need to instrument anything.
 

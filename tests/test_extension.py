@@ -87,6 +87,46 @@ class TestSuccessDetection:
         mock_play.assert_called_once_with(ext.failure_sound)
 
     @patch("scrapy_beep.extension.BeepExtension._play")
+    def test_itemcount_limit_plays_success(self, mock_play):
+        crawler = _make_crawler()
+        ext = BeepExtension.from_crawler(crawler)
+        spider = _make_spider(crawler, items=100, errors=0)
+
+        ext.spider_closed(spider, reason="itemcount")
+
+        mock_play.assert_called_once_with(ext.success_sound)
+
+    @patch("scrapy_beep.extension.BeepExtension._play")
+    def test_pagecount_limit_plays_success(self, mock_play):
+        crawler = _make_crawler()
+        ext = BeepExtension.from_crawler(crawler)
+        spider = _make_spider(crawler, items=50, errors=0)
+
+        ext.spider_closed(spider, reason="pagecount")
+
+        mock_play.assert_called_once_with(ext.success_sound)
+
+    @patch("scrapy_beep.extension.BeepExtension._play")
+    def test_timeout_limit_plays_success(self, mock_play):
+        crawler = _make_crawler()
+        ext = BeepExtension.from_crawler(crawler)
+        spider = _make_spider(crawler, items=20, errors=0)
+
+        ext.spider_closed(spider, reason="timeout")
+
+        mock_play.assert_called_once_with(ext.success_sound)
+
+    @patch("scrapy_beep.extension.BeepExtension._play")
+    def test_errorcount_limit_plays_failure(self, mock_play):
+        crawler = _make_crawler()
+        ext = BeepExtension.from_crawler(crawler)
+        spider = _make_spider(crawler, items=10, errors=0)
+
+        ext.spider_closed(spider, reason="errorcount")
+
+        mock_play.assert_called_once_with(ext.failure_sound)
+
+    @patch("scrapy_beep.extension.BeepExtension._play")
     def test_shutdown_reason_plays_failure(self, mock_play):
         crawler = _make_crawler()
         ext = BeepExtension.from_crawler(crawler)
