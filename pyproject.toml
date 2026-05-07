@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scrapy-beep"
+version = "0.1.0"
+description = "Scrapy extension that plays audio beeps on spider success or failure"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = ["scrapy>=2.11"]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-twisted"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["scrapy_beep*"]
+
+[tool.setuptools.package-data]
+scrapy_beep = ["sounds/*.wav"]
