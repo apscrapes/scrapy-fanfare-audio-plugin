@@ -6,7 +6,7 @@ Both sounds ship with the package — no system sounds, no extra dependencies.
 
 ## Installation
 
-Install directly from GitHub — no PyPI release needed.
+Install directly from GitHub 
 
 **pip**
 
