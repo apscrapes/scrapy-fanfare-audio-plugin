@@ -6,8 +6,28 @@ Both sounds ship with the package — no system sounds, no extra dependencies.
 
 ## Installation
 
+Install directly from GitHub — no PyPI release needed.
+
+**pip**
+
 ```bash
-pip install scrapy-beep
+pip install git+https://github.com/apscrapes/scrapy-fanfare-audio-plugin.git
+```
+
+**uv**
+
+```bash
+uv add git+https://github.com/apscrapes/scrapy-fanfare-audio-plugin.git
+```
+
+To pin to a specific commit (recommended for production):
+
+```bash
+# pip
+pip install git+https://github.com/apscrapes/scrapy-fanfare-audio-plugin.git@<commit-sha>
+
+# uv
+uv add git+https://github.com/apscrapes/scrapy-fanfare-audio-plugin.git@<commit-sha>
 ```
 
 ## Quick start
@@ -85,8 +105,8 @@ Pipelines process items one by one as they flow through the crawler. They have n
 ## Contributing
 
 ```bash
-git clone https://github.com/your-org/scrapy-beep
-cd scrapy-beep
+git clone https://github.com/apscrapes/scrapy-fanfare-audio-plugin.git
+cd scrapy-fanfare-audio-plugin
 pip install -e ".[dev]"
 pytest
 ```
