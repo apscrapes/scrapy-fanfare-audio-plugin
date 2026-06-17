@@ -10,3 +10,10 @@ build/
 htmlcov/
 *.wav.tmp
 .DS_Store
+*.md
+!README.md
+!how-to-build-scrapy-extension.md
+*.html
+repo-card.svg
+repo-card.png
+diagrams/*.png

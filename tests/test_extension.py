@@ -13,6 +13,7 @@ from scrapy.exceptions import NotConfigured
 from scrapy.settings import Settings
 from scrapy.statscollectors import MemoryStatsCollector
 
+from scrapy_beep.addon import Addon
 from scrapy_beep.extension import BeepExtension
 
 
@@ -187,6 +188,18 @@ class TestPlay:
         with patch.object(sys, "platform", "linux"):
             BeepExtension._play("/path/to/success.wav")
         mock_run.assert_called_once_with(["aplay", "/path/to/success.wav"], check=False)
+
+
+class TestAddon:
+    def test_registers_extension(self):
+        settings = Settings()
+        Addon().update_settings(settings)
+        assert "scrapy_beep.extension.BeepExtension" in settings.getwithbase("EXTENSIONS")
+
+    def test_extension_priority(self):
+        settings = Settings()
+        Addon().update_settings(settings)
+        assert settings.getwithbase("EXTENSIONS")["scrapy_beep.extension.BeepExtension"] == 500
 
 
 class TestBundledSounds:

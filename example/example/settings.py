@@ -12,7 +12,12 @@ BOT_NAME = "example"
 SPIDER_MODULES = ["example.spiders"]
 NEWSPIDER_MODULE = "example.spiders"
 
-ADDONS = {}
+ADDONS = {
+    "scrapy_beep.addon.Addon": 500,
+}
+
+# Set BEEP_ENABLED = False to silence audio without removing the addon.
+# Override sounds via BEEP_SUCCESS_SOUND / BEEP_FAILURE_SOUND.
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -49,15 +54,6 @@ DOWNLOAD_DELAY = 1
 #DOWNLOADER_MIDDLEWARES = {
 #    "example.middlewares.ExampleDownloaderMiddleware": 543,
 #}
-
-# Enable or disable extensions
-# See https://docs.scrapy.org/en/latest/topics/extensions.html
-EXTENSIONS = {
-    "scrapy_beep.extension.BeepExtension": 500,
-}
-
-# Set BEEP_ENABLED = False to silence audio without removing the extension.
-# Override sounds via BEEP_SUCCESS_SOUND / BEEP_FAILURE_SOUND.
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
